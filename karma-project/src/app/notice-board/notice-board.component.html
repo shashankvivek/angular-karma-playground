@@ -1,0 +1,11 @@
+<div>
+  <h1>{{title}}</h1>
+  <div class="board">
+    We are going to Mars. Do you want to join ?
+  </div>
+  <div>
+    <button id="yes-btn" (click)="sayYes()">Yes</button>
+    <button id="no-btn"
+            [disabled]="disableNoButton">No</button>
+  </div>
+</div>
