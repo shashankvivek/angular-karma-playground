@@ -48,6 +48,11 @@ fdescribe('NoticeBoardComponent', () => {
     expect(component.userResponse).toBe('I am In');
   });
 
+  it('should have No button disabled', () => {
+    const btn = fixture.debugElement.nativeElement.querySelector('#no-btn');
+    expect(btn.disabled).toBeTruthy();
+  });
+
   it('should have "No" button disabled by default', () => {
     expect(component.disableNoButton).toBeTruthy();
   });
