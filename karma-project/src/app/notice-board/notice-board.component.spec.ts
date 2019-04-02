@@ -23,11 +23,29 @@ fdescribe('NoticeBoardComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have a title', () => {
+  it('should have a title in header h1', () => {
     expect(component.title).toBe('NOTICE BOARD');
-    // we are accessing "h1"
     const title = fixture.debugElement.query(By.css('h1')).nativeElement;
     expect(title.innerHTML).toBe('NOTICE BOARD');
+  });
+
+  it('should have content in notice board ', () => {
+    const board = fixture.debugElement.query(By.css('.board')).nativeElement;
+    expect(board.innerHTML).not.toBeNull();
+    // console.log(board.innerHTML)
+    expect(board.innerHTML.length).toBeGreaterThan(0);
+  });
+
+  it('should have Yes in "Yes Button"', () => {
+    const btn = fixture.debugElement.nativeElement.querySelector('#yes-btn');
+    expect(btn.innerHTML).toBe('Yes');
+  });
+
+  it('should set userResponse when Yes button is clicked', () => {
+    expect(component.userResponse).toBeUndefined();
+    const btn = fixture.debugElement.nativeElement.querySelector('#yes-btn');
+    btn.click();
+    expect(component.userResponse).toBe('I am In');
   });
 
   it('should have "No" button disabled by default', () => {

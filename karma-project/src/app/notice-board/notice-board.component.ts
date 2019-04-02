@@ -13,7 +13,7 @@ export class NoticeBoardComponent implements OnInit {
 
   ngOnInit() {}
 
-  sayYes() {
+  public sayYes() {
     this.userResponse = 'I am In';
   }
 }
