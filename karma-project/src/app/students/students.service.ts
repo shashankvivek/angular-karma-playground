@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -14,5 +14,14 @@ export class StudentsService {
 
   getUserDetails(id) {
     return this._http.get(`https://reqres.in/api/users/${id}`);
+  }
+
+  getDepartmentMapping(deptId, studentId) {
+    let param = new HttpParams();
+    param = param.append('deptId', deptId);
+    param = param.append('userId', studentId);
+    return this._http.get(`https://someUrl.com/association/`, {
+      params: param,
+    });
   }
 }
