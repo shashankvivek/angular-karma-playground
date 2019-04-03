@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { StudentsService } from './students.service';
 import { StudentsServiceStub } from './students.service.mock';
 import { By } from '@angular/platform-browser';
+import { throwError } from 'rxjs';
 
 describe('StudentsComponent', () => {
   let component: StudentsComponent;
@@ -51,5 +52,28 @@ describe('StudentsComponent', () => {
       const ele = fixture.debugElement.nativeElement.querySelector('#board');
       expect(ele.innerHTML.trim()).toBe('paid : 0');
     });
+    it('populated when a user name is clicked ', () => {
+      const ele = fixture.debugElement.nativeElement.querySelector('#usr-1');
+      ele.click();
+      fixture.detectChanges(); // added to detect changes in HTML. Comment this try.
+      const board_ele = fixture.debugElement.nativeElement.querySelector('#board');
+      expect(board_ele.innerHTML.trim()).toBe('George Bluth paid : 1000');
+      expect(component.selected_user.first_name).toBe('George');
+    });
+  });
+
+  it('should call getDetails() with proper id when a value is selected from HTML', () => {
+    spyOn(component, 'getDetails').and.callThrough();
+    const ele = fixture.debugElement.nativeElement.querySelector('#usr-1');
+    ele.click();
+    expect(component.getDetails).toHaveBeenCalledWith(1);
+  });
+
+  it('should set Error message when getUserDetails() is errored out', () => {
+    expect(component.err_msg).toBeUndefined();
+    spyOn(component._userService, 'getUserDetails').and.returnValue(throwError('Error'));
+    const ele = fixture.debugElement.nativeElement.querySelector('#usr-1');
+    ele.click();
+    expect(component.err_msg).toBe('Error while loading User Details');
   });
 });
