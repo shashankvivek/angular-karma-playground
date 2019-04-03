@@ -13,6 +13,7 @@ export class StudentsComponent implements OnInit {
     first_name: '',
     last_name: '',
   };
+  fee = 0;
   constructor(public _userService: StudentsService) {}
 
   ngOnInit() {
@@ -26,12 +27,19 @@ export class StudentsComponent implements OnInit {
     );
   }
 
-  getDetails(id) {
-    this._userService.getUserDetails(id).subscribe((res) => {
-      this.selected_user = res['data'];
-    },
-    (err) => {
-      this.err_msg = 'Error while loading User Details';
-    });
+  getDetails(id: number): void {
+    this._userService.getUserDetails(id).subscribe(
+      (res) => {
+        this.selected_user = res['data'];
+        this.fee = this.getFeePaid(id);
+      },
+      (err) => {
+        this.err_msg = 'Error while loading User Details';
+      }
+    );
+  }
+
+  getFeePaid(id: number): number {
+    return id * 1000;
   }
 }

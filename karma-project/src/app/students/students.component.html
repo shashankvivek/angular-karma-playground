@@ -3,5 +3,5 @@
   <li *ngFor="let user of user_list" [id]="user.id" (click)="getDetails(user.id)">{{user.first_name}}</li>
 </ul>
 <div id="board">
-  {{selected_user.first_name}} {{selected_user.last_name}}
+  {{selected_user.first_name}} {{selected_user.last_name}} paid : {{fee}}
 </div>
