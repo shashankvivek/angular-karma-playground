@@ -14,7 +14,8 @@ export class StudentsService {
   }
 
   getUserDetails(id) {
-    return this._http.get(`https://reqres.in/api/users/${id}`).pipe(map((data) => this.transformResponseToAddCountry(data)));
+    return this._http.get(`https://reqres.in/api/users/${id}`)
+          .pipe(map((data) => this.transformResponseToAddUniversity(data)));
   }
 
   // this method transforms the response and adds "university" property to the json
