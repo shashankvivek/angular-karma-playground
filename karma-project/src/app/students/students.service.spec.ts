@@ -42,11 +42,21 @@ fdescribe('StudentsService', () => {
 
   it('getDepartmentMapping() should return data', () => {
     service.getDepartmentMapping('dept-1', 'usr-1').subscribe((res) => {
-      expect(res).toEqual('Success');
+      expect(res).toEqual({ id: 'usr-1' });
     });
 
     const reqMock = httpMock.expectOne((req) => req.method === 'GET' && req.url === 'https://someUrl.com/association/');
     expect(reqMock.request.method).toBe('GET');
-    reqMock.flush('Success');
+    reqMock.flush({ id: 'usr-1' });
+  });
+
+  it('saveUserAssociation() should POST and return data', () => {
+    service.saveUserAssociation('dept-1', 'usr-1').subscribe((res) => {
+      expect(res).toEqual({ msg: 'success' });
+    });
+
+    const req = httpMock.expectOne('https://someUrl.com/association/');
+    expect(req.request.method).toBe('POST');
+    req.flush({ msg: 'success' });
   });
 });
