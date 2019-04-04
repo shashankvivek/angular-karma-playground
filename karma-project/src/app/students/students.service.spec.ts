@@ -56,12 +56,12 @@ describe('StudentsService', () => {
 
   it('getUserDetails() should return trasnformed data', () => {
     service.getUserDetails('1').subscribe((res) => {
-      expect(res).toEqual(dummyUserListResponse);
+      expect(res).toEqual(tranformedDummyUserDetails);
     });
 
     const req = httpMock.expectOne('https://reqres.in/api/users/1');
     expect(req.request.method).toBe('GET');
-    req.flush(dummyUserListResponse);
+    req.flush(dummyUserDetails);
   });
 
   it('getDepartmentMapping() should return data', () => {
