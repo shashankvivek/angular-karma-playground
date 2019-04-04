@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,13 @@ export class StudentsService {
   }
 
   getUserDetails(id) {
-    return this._http.get(`https://reqres.in/api/users/${id}`);
+    return this._http.get(`https://reqres.in/api/users/${id}`).pipe(map((data) => this.transformResponseToAddCountry(data)));
+  }
+
+  // this method transforms the response and adds "university" property to the json
+  transformResponseToAddUniversity(response) {
+    response['data']['university'] = 'MIT';
+    return response;
   }
 
   // JUST FOR TESTING PURPOSE, NOT USED ANYWHERE IN PROJECT

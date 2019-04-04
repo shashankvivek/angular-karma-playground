@@ -10,7 +10,7 @@ const dummyUserListResponse = {
   ],
 };
 
-fdescribe('StudentsService', () => {
+describe('StudentsService', () => {
   let injector: TestBed;
   let service: StudentsService;
   let httpMock: HttpTestingController;
