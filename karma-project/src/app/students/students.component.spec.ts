@@ -13,7 +13,7 @@ describe('StudentsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule],
+      imports: [],
       declarations: [StudentsComponent],
       providers: [{ provide: StudentsService, useClass: StudentsServiceStub }],
     }).compileComponents();
