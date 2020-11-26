@@ -3,11 +3,12 @@ import { AppComponent } from './app.component';
 import { NoticeBoardComponent } from './notice-board/notice-board.component';
 import { StudentsComponent } from './students/students.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
-      declarations: [AppComponent, NoticeBoardComponent, StudentsComponent],
+      declarations: [AppComponent, NoticeBoardComponent, StudentsComponent, FormsModule],
     }).compileComponents();
   }));
   it('should create the app', async(() => {
